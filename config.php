@@ -66,12 +66,12 @@ function authUser($accessLevels){
 	$next = getNextURL();
 
 	if(empty($_SESSION['user']['authorized'])) {
-		header("Location: /serial/login.php?next=".$next);
+		header("Location: /login.php?next=".$next);
 		exit;
 	} else {
 		$levels = explode(',',$accessLevels);
 		if(!in_array($_SESSION['user']['user_type'],$levels)){
-			header("Location: /serial/login.php?next=".$next);
+			header("Location: /login.php?next=".$next);
 			exit;			
 		}
 	}
