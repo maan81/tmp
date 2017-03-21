@@ -1,0 +1,322 @@
+@charset "UTF-8";
+/* CSS Document */
+
+.prompt {
+	background-color: #B2F0FF;
+	color: #0000CC;
+	padding: 10px;
+	border: 1px solid #666666;
+}
+body, td, th, p, input {
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	line-height:22px;
+	color: #4E4E4E;
+}
+body {
+	background-color: #FFFFFF;
+	margin-left: 5px;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+a:link {
+	color: #429c00;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #429c00;
+}
+a:hover {
+	text-decoration: none;
+	color: #0499E9;
+}
+a:active {
+	text-decoration: none;
+	color: #429c00;
+}
+.paginate {
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 3px;
+	margin: 3px;
+}
+.paginate a {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #999;
+	text-decoration: none;
+	color: #666;
+}
+.paginate a:hover, .paginate a:active {
+	border: 1px solid #999;
+	color: #000;
+}
+.paginate span.current {
+	margin: 2px;
+	padding: 2px 5px 2px 5px;
+	border: 1px solid #999;
+	font-weight: bold;
+	background-color: #999;
+	color: #FFF;
+}
+.paginate span.disabled {
+	padding: 2px 5px 2px 5px;
+	margin: 2px;
+	border: 1px solid #eee;
+	color: #DDD;
+}
+li {
+	/*padding: 4px;
+	margin-bottom: 3px;
+	background-color: #FCC;
+	list-style: none;*/
+}
+ul {
+	margin: 6px;
+	padding: 0px;
+}
+.visitorsTableHdr {
+	padding: 3px;
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+	background-color: #658064;
+}
+.visitorsTableHdr a:link, .visitorsTableHdr a:visited, visitorsTableHdr a:active {
+	color:#fff;
+	text-decoration:none;
+}
+.visitorsTableHdr a:hover {
+	color:#F6DB5A;
+	text-decoration:none;
+}
+
+.sorted a:link  {
+	color:#F6DB5A;
+	text-decoration:none;
+}
+.visitorsTableHdr2 {
+	padding: 3px;
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+	background-color: #1262A4;
+}
+.fontSml {
+	font-size: 10px;
+}
+.addButton {
+	border: 1px solid #ccc;
+	background-color: #eaeaea;
+	padding: 10px;
+	line-height: 40px;
+	margin: auto 2px;
+}
+.searchResultsText {
+	color: #2196F6;
+}
+.viewEditBox {
+	width: 7.5in;
+	margin: 0 auto;
+	padding: 0.5in;
+	border: 6px solid #efefef;
+}
+.hdrBG {
+	background-color: #000000;
+}
+h1 {
+	margin: 10px auto;
+	text-align: center;
+}
+.marginCentered {
+	margin:0 auto;
+}
+.logoTD {
+	padding:17px 0;
+}
+.logoTextTD {
+	padding:17px;
+}
+.logoText {
+	line-height:50px; margin:0; padding:0; color:#FFFFFF;
+}
+form {
+	display:inline;
+}
+.submitButton {
+	border: 1px solid #52763B;
+	background-color: #62AB40;
+	color: fff;
+	line-height: 20px;
+	font-size: 18px;
+	padding:15px 35px;
+	border-radius: 15px;
+}
+
+.submitButton:hover {
+	background-color:#296B97;
+	border-color:#218CDF;
+}
+.spiffTable1 td, th {
+	padding:6px;
+	border:1px solid #ccc;
+	background-color:#0652B8;
+	color:#FFFFFF;
+}
+.spiffTable1 {
+	border-collapse:collapse;
+}
+
+.bdr1 {
+	border-bottom:1px dashed #ccc;
+}
+.free {
+	background-color:#ADE8B2 !important;
+}
+.free_unknown {
+	background-color: #FABC4C !important;
+}
+.set {
+	background-color: #F3E594 !important;
+}
+.none {
+	background-color:#efefef;
+}
+
+/* =Menu
+-------------------------------------------------------------- */
+
+#access {
+
+	margin: 0 auto;
+	/*width:840px;*/
+	min-height:38px;
+	/*text-align:center;*/
+	
+	
+}
+#access ul{
+	display:inline-block;
+}
+#access .menu-header,
+div.menu {
+ margin-left:-40px;
+	height:38px;
+}
+#access .menu-header ul,
+div.menu ul {
+	list-style: none;
+	margin-top:0px;
+}
+#access .menu-header li,
+div.menu li {
+	float: left;
+	position: relative;
+}
+#access a {
+	color:#429D00;
+	display: block;
+	line-height: 38px;
+	padding: 0 6px;
+	text-decoration: none;
+	/*background-color:#80B680;*/
+	background-color:#fff;
+	min-width:75px;
+	margin:0 2px;
+	font-size:15px;
+	/*border-radius:5px 5px 0 0;*/
+	border:2px solid #ccc;
+	/*border-bottom:0px;*/
+}
+#access ul ul {
+	display: none;
+	position: absolute;
+	top: 40px;
+	left: -6px;
+	float: left;
+	width: 120px;
+	z-index: 99999;
+}
+#access ul ul li {
+	min-width: 80px;
+}
+#access ul ul ul {
+	left: 100%;
+	top: 0;
+	
+}
+#access ul ul a {
+	background-color: #efefef;
+	line-height: 38px;
+	padding: 0 5px 0 8px;
+	min-width: 100px;
+	height: auto;
+	text-align: left;
+	color: #429D00;
+	font-size:12px;
+	border-radius:0;
+}
+#access li:hover > a {
+	color: #0499E9;
+	background-color:#fff;
+}
+#access ul ul :hover > a {
+	background: #5FAAFB;
+	color: #fff;
+}
+#access ul li:hover > ul {
+	display: block;
+}
+#access ul li.current_page_item > a,
+#access ul li.current-menu-ancestor > a,
+#access ul li.current-menu-item > a,
+#access ul li.current-menu-parent > a {
+	color: #fff;
+}
+* html #access ul li.current_page_item a,
+* html #access ul li.current-menu-ancestor a,
+* html #access ul li.current-menu-item a,
+* html #access ul li.current-menu-parent a,
+* html #access ul li a:hover {
+	color: #fff;
+}
+/*-----end menu -------*/
+
+.temp1 {
+	text-align:center;
+}
+.spiffTD {
+	padding-bottom:20px;
+	text-align:left;
+	vertical-align:top;
+}
+.odd, .even {
+	border-top:3px solid #666;
+}
+.table>thead>tr>th {
+	vertical-align:middle !important;
+}
+.container {
+	width:100% !important;
+	padding-right: 0px !important;
+	padding-left: 0px !important;
+	margin-right: 0 !important;
+	margin-left: 0 !important;
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+	padding: 2px !important;
+	line-height:normal !important;
+	vertical-align: top !important;
+	border-top: 1px solid #ddd !important;
+}
+.row {
+	margin-right:0px !important;
+	margin-left:0px !important;
+}
+#grandTotal {
+	font-size:22px;
+	font-weight:bold;
+	padding:0px 20px 0 10px;
+}
