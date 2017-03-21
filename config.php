@@ -7,19 +7,19 @@ session_start();
 // }
 
 ## ESTABLISH  DATABASE CONNECTION ##
-$dbcnx = @mysql_connect('localhost','username', 'password');
+$dbcnx = @mysqli_connect('localhost','root', 'password');
 if (!$dbcnx) {
 	echo( '<p>Unable to connect to the database server at this time.</p>');
 	exit();
 }
-if (! @mysql_select_db('databaseName') ) {
+if (! @mysqli_select_db($dbcnx,'databaseName') ) {
 	die( '<p>Unable to locate computer database at this time.</p>');
 }
 
 ## database definitions 
 define('DB_DATABASE','databaseName');
 define('DB_HOST','localhost');
-define('DB_USERNAME','username');
+define('DB_USERNAME','root');
 define('DB_PASSWORD','password');
 
 
@@ -29,8 +29,8 @@ define('DB_PASSWORD','password');
 ** Output: SQL Query Results or ID - $result, $id                                      **
 ****************************************************************************************/
 function runQuery($sql, $mode = 'read', $database = DB_DATABASE) {
-	$conn = mysql_connect(DB_HOST, DB_USERNAME, DB_PASSWORD) or die(mysql_error());
-	mysql_select_db($database, $conn) or die(mysql_error());
+	$conn = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD) or die(mysql_error());
+	mysqli_select_db($database, $conn) or die(mysql_error());
 	$error_desc = ($_GET['debugsql'] == 'true' ? "<pre>".$sql."</pre><br>Bad Query:" : "Bad Query:");
 	$result = mysql_query($sql, $conn) or die ($error_desc . mysql_error()); 
 	#$result = mysql_query($sql, $conn); 

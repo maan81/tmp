@@ -2,14 +2,14 @@
 
 
  mysql_connect('localhost', 'threeGeeXcart', 'd1oeeTkRnccM'); 
- $dbcnx = @mysql_connect('localhost','threeGeeXcart', 'd1oeeTkRnccM');
+ $dbcnx = @mysqli_connect('localhost','threeGeeXcart', 'd1oeeTkRnccM');
 if (!$dbcnx) {
 	echo( '<p>Unable to connect to the' .
 		'database server at this time.</p>');
 	exit();
 	}
 
- if (! @mysql_select_db('databaseName') ) {
+ if (! @mysqli_select_db('databaseName') ) {
 	die( '<p>Unable to locate computer database at this time.</p>');
 	}
 

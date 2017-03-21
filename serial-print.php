@@ -6,7 +6,7 @@
 // }
 
 ## ESTABLISH  DATABASE CONNECTION ##
-$dbcnx = @mysql_connect('localhost','username', 'password');
+$dbcnx = @mysqli_connect('localhost','username', 'password');
 if (!$dbcnx) {
 	echo( '<p>Unable to connect to the database server at this time.</p>');
 	exit();
