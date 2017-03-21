@@ -1,9 +1,9 @@
 <?php
 
-if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == ""){
-    $redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-    header("Location: $redirect");
-}
+// if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == ""){
+//     $redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+//     header("Location: $redirect");
+// }
 
 ## ESTABLISH  DATABASE CONNECTION ##
 $dbcnx = @mysql_connect('localhost','username', 'password');

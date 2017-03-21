@@ -10,9 +10,9 @@ include('config.php');
 <meta http-equiv="Content-Type" 
 content="text/html; charset=ISO-8859-1" />
 <link href="styles.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <script src="poppers.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
 </head>

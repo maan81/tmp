@@ -93,8 +93,8 @@ if(isset($_POST['submit']) || $mode == 'delete') {
 <meta http-equiv="Content-Type" 
     content="text/html; charset=ISO-8859-1" />
 <link href="styles.css" rel="stylesheet" type="text/css">
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 <script src="masked.js" type="text/javascript"></script>
 <script type="text/javascript">
 

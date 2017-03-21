@@ -106,8 +106,8 @@ if(isset($_POST['submit']) || $mode == 'delete') {
     content="text/html; charset=ISO-8859-1" />
 <link href="styles.css" rel="stylesheet" type="text/css">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="masked.js" type="text/javascript"></script>
 <script type="text/javascript">
 function MM_jumpMenu(targ,selObj,restore){ //v3.0
