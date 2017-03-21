@@ -1,9 +1,9 @@
 <?php
 
-// if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == ""){
-//     $redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-//     header("Location: $redirect");
-// }
+if(!isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] == ""){
+    $redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    header("Location: $redirect");
+}
 
 ## ESTABLISH  DATABASE CONNECTION ##
 $dbcnx = @mysqli_connect('localhost','username', 'password');
@@ -11,7 +11,7 @@ if (!$dbcnx) {
 	echo( '<p>Unable to connect to the database server at this time.</p>');
 	exit();
 }
-if (! @mysql_select_db('databaseName') ) {
+if (! @mysqli_select_db('databaseName') ) {
 	die( '<p>Unable to locate computer database at this time.</p>');
 }
 
