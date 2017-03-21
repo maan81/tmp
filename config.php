@@ -7,7 +7,7 @@ session_start();
 // }
 
 ## ESTABLISH  DATABASE CONNECTION ##
-$dbcnx = @mysqli_connect('localhost','username', 'password');
+$dbcnx = @mysqli_connect('localhost','root', 'password');
 if (!$dbcnx) {
 	echo( '<p>Unable to connect to the database server at this time.</p>');
 	exit();
@@ -19,7 +19,7 @@ if (! @mysqli_select_db($dbcnx,'databaseName') ) {
 ## database definitions 
 define('DB_DATABASE','databaseName');
 define('DB_HOST','localhost');
-define('DB_USERNAME','username');
+define('DB_USERNAME','root');
 define('DB_PASSWORD','password');
 
 
