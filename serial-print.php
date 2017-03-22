@@ -11,7 +11,7 @@ if (!$dbcnx) {
 	echo( '<p>Unable to connect to the database server at this time.</p>');
 	exit();
 }
-if (! @mysqli_select_db('databaseName') ) {
+if (! @mysqli_select_db($dbcnx, 'databaseName') ) {
 	die( '<p>Unable to locate computer database at this time.</p>');
 }
 

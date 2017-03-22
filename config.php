@@ -30,7 +30,7 @@ define('DB_PASSWORD','password');
 ****************************************************************************************/
 function runQuery($sql, $mode = 'read', $database = DB_DATABASE) {
 	$conn = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD) or die("Failed to connect to MySQL: " . mysqli_connect_error());
-	mysqli_select_db($database, $conn) or die("Failed to connect to MySQL: " . mysqli_connect_error());
+	mysqli_select_db($conn, $database) or die("Failed to connect to MySQL: " . mysqli_connect_error());
 	$error_desc = ($_GET['debugsql'] == 'true' ? "<pre>".$sql."</pre><br>Bad Query:" : "Bad Query:");
 	$result = mysqli_query($conn, $sql) or die ($error_desc . mysqli_error($conn));
 	#$result = mysql_query($sql, $conn); 
