@@ -29,13 +29,13 @@ define('DB_PASSWORD','password');
 ** Output: SQL Query Results or ID - $result, $id                                      **
 ****************************************************************************************/
 function runQuery($sql, $mode = 'read', $database = DB_DATABASE) {
-	$conn = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD) or die(mysql_error());
-	mysqli_select_db($database, $conn) or die(mysql_error());
+	$conn = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD) or die("Failed to connect to MySQL: " . mysqli_connect_error());
+	mysqli_select_db($database, $conn) or die("Failed to connect to MySQL: " . mysqli_connect_error());
 	$error_desc = ($_GET['debugsql'] == 'true' ? "<pre>".$sql."</pre><br>Bad Query:" : "Bad Query:");
-	$result = mysql_query($sql, $conn) or die ($error_desc . mysql_error()); 
+	$result = mysqli_query($conn, $sql) or die ($error_desc . mysqli_error($conn));
 	#$result = mysql_query($sql, $conn); 
-	$id = mysql_insert_id();
-	mysql_close();
+	$id = mysqli_insert_id($conn);
+	mysqli_close($conn);
 	switch ($mode) {
 		case 'write':
 			return $id;
@@ -50,7 +50,7 @@ function runQuery($sql, $mode = 'read', $database = DB_DATABASE) {
 function setUserVars($userID){
 	$sql = "SELECT * FROM 3G_users AS u WHERE user_id = '".$userID."' AND active = 1 LIMIT 1";
 	$rs = runQuery($sql);
-	$r = mysql_fetch_assoc($rs);
+	$r = mysqli_fetch_assoc($rs);
 	
 	$_SESSION['user']['id'] = $r['user_id'];
 	$_SESSION['user']['user_id'] = $r['user_id'];		
