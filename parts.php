@@ -11,7 +11,7 @@ $table_name = "3G_serial_numbers_parts";
 if ($mode == "search") {
 	$q = $_REQUEST['q'];
 	$isSearch = "&mode=search&q=".$q;
-	$showAll = '<a href="/serial/parts.php" class="addButton">Show All</a>';
+	$showAll = '<a href="/parts.php" class="addButton">Show All</a>';
 }
 
 if($mode == 'edit') { 
@@ -116,7 +116,7 @@ jQuery(function($){
 <br>
 <?php if(isset($prompt)) print $prompt?>
 <?php if($mode == 'add' || $mode == 'edit') :?>
-<div class="viewEditBox"> <a href="/serial/parts.php" class="addButton">Cancel</a><br>
+<div class="viewEditBox"> <a href="/parts.php" class="addButton">Cancel</a><br>
   <br>
   <form action="<?= $_SERVER['PHP_SELF']?>?mode=<?=$mode?>&entryID=<?=$entryID?>" method="post">
     <table cellpadding="3" cellspacing="3" border="0" width="100%">
@@ -454,7 +454,7 @@ while ($row = @mysqli_fetch_array($result1)) {
 ?>
   <table width="100%" border="0" cellspacing="3" cellpadding="2">
     <tr>
-      <td width="1%" align="left" valign="middle"><a href="/serial/parts.php" class="addButton">Close</a></td>
+      <td width="1%" align="left" valign="middle"><a href="/parts.php" class="addButton">Close</a></td>
       <td valign="middle" align="right"><a href="parts.php?mode=edit&entryID=<?php echo $entryID; ?>" class="addButton">Edit</a></td>
     </tr>
     <tr>
