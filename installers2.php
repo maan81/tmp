@@ -16,8 +16,8 @@ if ($mode == "search") {
 
 if($mode == 'edit') { 
 	$sql = "SELECT * FROM $table_name WHERE installer_id='$entryID' ";
-	$rs = mysql_query($sql); 
-	$r = mysql_fetch_array($rs);
+	$rs = mysqli_query($dbcnx, $sql); 
+	$r = mysqli_fetch_array($rs);
 	$installer_id = $r['installer_id'];
 	$fname = $r['fname'];
 	$lname = $r['lname'];
@@ -39,11 +39,11 @@ if(isset($_POST['submit']) || $mode == 'delete') {
 	if($mode == 'delete') {
 		$sql = "DELETE FROM  $table_name WHERE installer_id='$entryID' ";
 		$mode = '';
-		 if (@mysql_query($sql)) { 
+		 if (@mysqli_query($dbcnx, $sql)) { 
 			$_SESSION['prompt'] = '<h2 class="prompt" id="alert">Entry was successfully deleted.</h2>'; 
 			header('Location:installers.php');
 		 } else { 
-			$prompt = '<p>Error adding submitted entry: ' . mysql_error() . '</p>'; 
+			$prompt = '<p>Error adding submitted entry: ' . mysqli_error($dbcnx) . '</p>'; 
 		 } 		
 	} elseif($mode == 'add') {
 		unset($_SESSION['prompt']);
@@ -64,11 +64,11 @@ if(isset($_POST['submit']) || $mode == 'delete') {
 		zip='".$_POST['zip']."'
 		";
   
-		 if (@mysql_query($sql)) { 
+		 if (@mysqli_query($dbcnx, $sql)) { 
 			$_SESSION['prompt'] = '<h2 class="prompt" id="alert">Your entry has been added.</h2>'; 
 			header('Location:installers.php');
 		 } else { 
-			$prompt = '<p>Error adding submitted entry: ' . mysql_error() . '</p>'; 
+			$prompt = '<p>Error adding submitted entry: ' . mysqli_error($dbcnx) . '</p>'; 
 		 } 
 	} elseif ($mode == 'edit') {
 		unset($_SESSION['prompt']);
@@ -88,11 +88,11 @@ if(isset($_POST['submit']) || $mode == 'delete') {
         rating='{$_POST['rating']}', 
         zip='{$_POST['zip']}'
 			WHERE installer_id='$entryID' ";		
-		 if (@mysql_query($sql)) { 
+		 if (@mysqli_query($dbcnx, $sql)) { 
 			$_SESSION['prompt'] = '<h2 class="prompt" id="alert">Your entry has been edited.</h2>'; 
 			header('Location:installers.php?mode=view&entryID='.$entryID.'');
 		 } else { 
-			$prompt = '<p>Error editing entry: ' . mysql_error() . '</p>'; 
+			$prompt = '<p>Error editing entry: ' . mysqli_error($dbcnx) . '</p>'; 
 		 } 
 
 	} 
@@ -313,8 +313,8 @@ foreach ($state_array as $val => $display){
 <div class="viewEditBox">
   <?php
 $query1 = "select * from $table_name WHERE installer_id = $entryID";
-$result1=@mysql_query($query1);
-while ($row = @mysql_fetch_array($result1)) {
+$result1=@mysqli_query($dbcnx, $query1);
+while ($row = @mysqli_fetch_array($result1)) {
 	
 	$installer_id = "{$row['installer_id']}";
 	$fname = "{$row['fname']}";
@@ -497,11 +497,11 @@ $limit = 100;
 	} else {
 		$query = "SELECT COUNT(*) as num FROM $table_name";
 	}
-	$total_pages = mysql_fetch_array(mysql_query($query));
+	$total_pages = mysqli_fetch_array(mysqli_query($dbcnx, $query));
 	$total_pages = $total_pages[num];
 	
 	$stages = 3;
-	$page = mysql_escape_string($_GET['page']);
+	$page = mysqli_escape_string($dbcnx, $_GET['page']);
 	if($page){
 		$start = ($page - 1) * $limit; 
 	}else{
@@ -528,7 +528,7 @@ $limit = 100;
 			$query1 = "SELECT * FROM $table_name ORDER BY rating DESC LIMIT $start, $limit ";
 		}
 	}
-	$result = mysql_query($query1);
+	$result = mysqli_query($dbcnx, $query1);
 	
 	// Initial page num setup
 	if ($page == 0){$page = 1;}
@@ -652,7 +652,7 @@ $limit = 100;
 	//echo "<td class=\"visitorsTableHdr2\" style=\"background-color:#dd0000;\" width=\"1%\" nowrap>Delete?</td>"; 
 	echo "</tr>";
 	
-	while($row = mysql_fetch_array($result)){ 
+	while($row = mysqli_fetch_array($result)){ 
 	 	
 	$row_color = ($row_count % 2) ? $color1 : $color2;
     $installer_id = "{$row['installer_id']}";
