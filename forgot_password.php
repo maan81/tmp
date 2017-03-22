@@ -50,16 +50,16 @@ if(isset($_POST['email'])){
 		$query  = "SELECT * FROM 3G_users WHERE email='$email' LIMIT 1 ";         
 		$result = runQuery($query);
 
-		if(mysql_num_rows($result) == 0){ 
+		if(mysqli_num_rows($result) == 0){
         	echo("<div class='ErrorMessage'><p>That email address is not registered in our system. Please <a href='mailto:webmaster@3GCardio.com'>contact the webmaster</a> for assistance.</p></div>"); 
 		} else {
-			$row = mysql_fetch_assoc($result);
+			$row = mysqli_fetch_assoc($result);
 			$email = $row['email'];
 	   		$password = $row['password'];
 			if(empty($password)){
 				$update = "UPDATE 3G_users SET password = '@tempPa33w0rD' WHERE email = '$email'";
 				runQuery($update);
-				$row = mysql_fetch_assoc(runQuery($query));
+				$row = mysqli_fetch_assoc(runQuery($query));
 				$email = $row['email'];
 				$password = $row['password'];
 			}
