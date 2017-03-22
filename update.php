@@ -10,7 +10,7 @@ if(!empty($_POST)){
         $user_id = $explode[1];
         $field_name = $explode[0];
         if(isset($user_id)){
-            $update = mysql_query("UPDATE test1 SET $field_name='{$value}' WHERE id='$user_id'"); //Update the test1 Table
+            $update = mysqli_query($dbcnx, "UPDATE test1 SET $field_name='{$value}' WHERE id='$user_id'"); //Update the test1 Table
             $update = true;
             if($update){
                 $response = "User Details Updated";
