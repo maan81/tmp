@@ -34,8 +34,8 @@ if(isset($_POST['submit'])) {
 
 		$rs = runQuery($sql);
 	
-		if(mysql_num_rows($rs) > 0) {
-			$r = mysql_fetch_assoc($rs);
+		if(mysqli_num_rows($rs) > 0) {
+			$r = mysqli_fetch_assoc($rs);
 			setUserVars($r['user_id']);
 			
 			switch($_SESSION['user']['user_type']){
