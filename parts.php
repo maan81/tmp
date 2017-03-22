@@ -16,8 +16,8 @@ if ($mode == "search") {
 
 if($mode == 'edit') { 
 	$sql = "SELECT * FROM $table_name WHERE id='$entryID' ";
-	$rs = mysql_query($sql); 
-	$r = mysql_fetch_array($rs);
+	$rs = mysqli_query($dbcnx, $sql);
+	$r = mysqli_fetch_array($rs);
 	$id = $r['id'];
 	$model_id = $r['model_id'];
 	$part_name = $r['part_name'];
@@ -37,10 +37,10 @@ if(isset($_POST['submit']) || $mode == 'delete') {
 	if($mode == 'delete') {
 		$sql = "DELETE FROM  $table_name WHERE id='$entryID' ";
 		$mode = '';
-		 if (@mysql_query($sql)) { 
+		 if (@mysqli_query($dbcnx, $sql)) {
 			$prompt = '<h2 class="prompt">Entry was successfully deleted.</h2><br><meta http-equiv="refresh" content="3;URL=parts.php">'; 
 		 } else { 
-			$prompt = '<p>Error adding submitted entry: ' . mysql_error() . '</p>'; 
+			$prompt = '<p>Error adding submitted entry: ' . mysqli_error($dbcnx) . '</p>';
 		 } 		
 	} elseif($mode == 'add') {
 		$mode = '';
@@ -59,10 +59,10 @@ if(isset($_POST['submit']) || $mode == 'delete') {
 		part_cost='".$_POST['part_cost']."'
 		";
   
-		 if (@mysql_query($sql)) { 
+		 if (@mysqli_query($dbcnx, $sql)) {
 			$prompt = '<h2 class="prompt">Your entry has been added.</h2><br><meta http-equiv="refresh" content="3;URL=parts.php">'; 
 		 } else { 
-			$prompt = '<p>Error adding submitted entry: ' . mysql_error() . '</p>'; 
+			$prompt = '<p>Error adding submitted entry: ' . mysqli_error($dbcnx) . '</p>';
 		 } 
 	} elseif ($mode == 'edit') {
 		$mode = '';
@@ -80,10 +80,10 @@ if(isset($_POST['submit']) || $mode == 'delete') {
         order_qty='{$_POST['order_qty']}', 
         part_cost='{$_POST['part_cost']}'
 			WHERE id='$entryID' ";		
-		 if (@mysql_query($sql)) { 
+		 if (@mysqli_query($dbcnx, $sql)) {
 			$prompt = '<h2 class="prompt">Your entry has been updated.</h2><br><meta http-equiv="refresh" content="3;URL=parts.php?model_id='.$model_id.'">'; 
 		 } else { 
-			$prompt = '<p>Error editing entry: ' . mysql_error() . '</p>'; 
+			$prompt = '<p>Error editing entry: ' . mysqli_error($dbcnx) . '</p>';
 		 } 
 
 	} 
@@ -124,8 +124,8 @@ jQuery(function($){
         <td colspan="3" ><h3>Model: 
         <?php
         $query1 = "select * from 3G_serial_numbers_models WHERE model_id = $model_id";
-        $result1=@mysql_query($query1);
-        while ($row = @mysql_fetch_array($result1)) {
+        $result1=@mysqli_query($dbcnx, $query1);
+        while ($row = @mysqli_fetch_array($result1)) {
 		echo $row['name'];
 		}
 		?>
@@ -433,8 +433,8 @@ foreach ($order_qty_array as $val => $display){
 <div class="viewEditBox">
   <?php
 $query1 = "select * from $table_name WHERE id = $entryID";
-$result1=@mysql_query($query1);
-while ($row = @mysql_fetch_array($result1)) {
+$result1=@mysqli_query($dbcnx. $query1);
+while ($row = @mysqli_fetch_array($result1)) {
 	
 	$id = "{$row['id']}";
 	$model_id = "{$row['model_id']}";
@@ -527,8 +527,8 @@ while ($row = @mysql_fetch_array($result1)) {
 <h3 style="text-align:center;">Model: 
         <?php
         $query1 = "select * from 3G_serial_numbers_models WHERE model_id = $model_id";
-        $result1=@mysql_query($query1);
-        while ($row = @mysql_fetch_array($result1)) {
+        $result1=@mysqli_query($dbcnx, $query1);
+        while ($row = @mysqli_fetch_array($result1)) {
 		echo $row['name'];
 		}
 		?>
@@ -561,11 +561,11 @@ $limit = 10000000;
 	} else {
 		$query = "SELECT COUNT(*) as num FROM $table_name WHERE model_id='$model_id' ";
 	}
-	$total_pages = mysql_fetch_array(mysql_query($query));
+	$total_pages = mysqli_fetch_array(mysqli_query($dbcnx, $query));
 	$total_pages = $total_pages[num];
 	
 	$stages = 3;
-	$page = mysql_escape_string($_GET['page']);
+	$page = mysqli_escape_string($dbcnx, $_GET['page']);
 	if($page){
 		$start = ($page - 1) * $limit; 
 	}else{
@@ -587,7 +587,7 @@ $limit = 10000000;
 	} else {
 		$query1 = "SELECT * FROM $table_name WHERE model_id='$model_id' ORDER BY part_num ASC LIMIT $start, $limit ";
 	}
-	$result = mysql_query($query1);
+	$result = mysqli_query($dbcnx, $query1);
 	
 	// Initial page num setup
 	if ($page == 0){$page = 1;}
@@ -715,7 +715,7 @@ $limit = 10000000;
 	//echo "<td class='visitorsTableHdr2' style='background-color:#dd0000;' width='1%' nowrap>Delete?</td>\n"; 
 	echo "</tr>\n";
 	
-	while($row = mysql_fetch_array($result)){ 
+	while($row = mysqli_fetch_array($result)){
 	 	
 	$row_color = ($row_count % 2) ? $color1 : $color2;
     $id = "{$row['id']}";
@@ -730,13 +730,13 @@ $limit = 10000000;
 	$part_cost = "{$row['part_cost']}";
 	$part_msrp = "{$row['part_msrp']}";
 	$min_qty = "{$row['min_qty']}";
-	$actual_qty = "{$row['actual_qty']}";
+	$actual_qty = "{$row['actual_qty']$results3 = mysqli_query($dbcnx, $query}";
 	$order_qty = "{$row['order_qty']}";
 	
 	 
 	$query3 = "SELECT name FROM 3G_serial_numbers_models WHERE model_id='$model_id' ";
-	$results3 = mysql_query($query3);				
-	$row3 = mysql_fetch_array($results3);
+	$results3 = mysqli_query($dbcnx, $query3);
+	$row3 = mysqli_fetch_array($results3);
 	$name = $row3['name'];
 				
   echo "<tr >\n";
