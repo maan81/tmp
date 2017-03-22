@@ -1,8 +1,8 @@
 <?php
 
 
- mysql_connect('localhost', 'threeGeeXcart', 'd1oeeTkRnccM'); 
- $dbcnx = @mysql_connect('localhost','threeGeeXcart', 'd1oeeTkRnccM');
+ // $dbcnx = @mysqli_connect('localhost', 'root', 'password'); 
+ $dbcnx = @mysqli_connect('localhost','threeGeeXcart', 'd1oeeTkRnccM');
 if (!$dbcnx) {
 	echo( '<p>Unable to connect to the' .
 		'database server at this time.</p>');
@@ -17,10 +17,10 @@ if (!$dbcnx) {
 
 $query1 = "select * from 3G_serial_numbers_salesPersons";
 //$query2 = "select * from 3G_serial_numbers_salesPersons WHERE salesperson_id='$salesperson_id' ";
-$results = @mysql_query($query1);
+$results = @mysqli_query($dbcnx, $query1);
 
 echo '<select name="salesperson_id">';
-while($row = mysql_fetch_array($results)) {
+while($row = mysqli_fetch_array($results)) {
 	$salesID = "{$row['salesperson_id']}";
 	$fname = "{$row['fname']}";
 	$lname = "{$row['lname']}";
