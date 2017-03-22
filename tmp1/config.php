@@ -7,7 +7,7 @@ session_start();
 // }
 
 ## ESTABLISH  DATABASE CONNECTION ##
-$dbcnx = @mysqli_connect('localhost','username', 'password');
+$dbcnx = @mysqli_connect('localhost','root', 'password');
 if (!$dbcnx) {
 	echo( '<p>Unable to connect to the database server at this time.</p>');
 	exit();
@@ -19,7 +19,7 @@ if (! @mysqli_select_db($dbcnx,'databaseName') ) {
 ## database definitions 
 define('DB_DATABASE','databaseName');
 define('DB_HOST','localhost');
-define('DB_USERNAME','username');
+define('DB_USERNAME','root');
 define('DB_PASSWORD','password');
 
 
@@ -29,13 +29,13 @@ define('DB_PASSWORD','password');
 ** Output: SQL Query Results or ID - $result, $id                                      **
 ****************************************************************************************/
 function runQuery($sql, $mode = 'read', $database = DB_DATABASE) {
-	$conn = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD) or die("Failed to connect to MySQL: " . mysqli_connect_error());
-	mysqli_select_db($database, $conn) or die("Failed to connect to MySQL: " . mysqli_connect_error());
+	$conn = mysqli_connect(DB_HOST, DB_USERNAME, DB_PASSWORD) or die(mysql_error());
+	mysqli_select_db($database, $conn) or die(mysql_error());
 	$error_desc = ($_GET['debugsql'] == 'true' ? "<pre>".$sql."</pre><br>Bad Query:" : "Bad Query:");
-	$result = mysqli_query($conn, $sql) or die ($error_desc . mysqli_error($conn));
+	$result = mysql_query($sql, $conn) or die ($error_desc . mysql_error()); 
 	#$result = mysql_query($sql, $conn); 
-	$id = mysqli_insert_id($conn);
-	mysqli_close($conn);
+	$id = mysql_insert_id();
+	mysql_close();
 	switch ($mode) {
 		case 'write':
 			return $id;
@@ -50,7 +50,7 @@ function runQuery($sql, $mode = 'read', $database = DB_DATABASE) {
 function setUserVars($userID){
 	$sql = "SELECT * FROM 3G_users AS u WHERE user_id = '".$userID."' AND active = 1 LIMIT 1";
 	$rs = runQuery($sql);
-	$r = mysqli_fetch_assoc($rs);
+	$r = mysql_fetch_assoc($rs);
 	
 	$_SESSION['user']['id'] = $r['user_id'];
 	$_SESSION['user']['user_id'] = $r['user_id'];		

@@ -11,7 +11,7 @@ if (!$dbcnx) {
 	echo( '<p>Unable to connect to the database server at this time.</p>');
 	exit();
 }
-if (! @mysqli_select_db('databaseName') ) {
+if (! @mysql_select_db('databaseName') ) {
 	die( '<p>Unable to locate computer database at this time.</p>');
 }
 
@@ -37,8 +37,8 @@ $table_name = "3G_serial_numbers";
 <div class="viewEditBox">
   <?php
 $query1 = "select * from $table_name WHERE id = $entryID";
-$result1=@mysqli_query($dbcnx, $query1);
-while ($row = @mysqli_fetch_array($result1)) {
+$result1=@mysql_query($query1);
+while ($row = @mysql_fetch_array($result1)) {
 	
 	$serial_number = "{$row['serial_number']}";
 	$serial_number_2 = "{$row['serial_number_2']}";
@@ -148,8 +148,8 @@ while ($row = @mysqli_fetch_array($result1)) {
       <td align="left" valign="top" nowrap="nowrap"><strong>Spiff Salesperson:</strong></td>
       <td align="left" valign="top"><?php
 				$query2 = "SELECT * FROM 3G_serial_numbers_salesPersons WHERE salesperson_id='$salesperson_id' ";
-				$results2 = mysqli_query($dbcnx, $query2);				
-				while($row2 = mysqli_fetch_array($results2)) {
+				$results2 = mysql_query($query2);				
+				while($row2 = mysql_fetch_array($results2)) {
 					$salesID = $row2['salesperson_id'];
 					$fname = $row2['fname'];
 					$lname = $row2['lname'];
