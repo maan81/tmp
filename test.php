@@ -1,8 +1,8 @@
 <?php
 
 
- // mysql_connect('localhost', 'root', 'd1oeeTkRnccM'); 
- $dbcnx = @mysqli_connect('localhost','root', 'password');
+ $dbcnx = @mysqli_connect('localhost', 'root', 'password'); 
+ // $dbcnx = @mysqli_connect('localhost','threeGeeXcart', 'd1oeeTkRnccM');
 if (!$dbcnx) {
 	echo( '<p>Unable to connect to the' .
 		'database server at this time.</p>');
