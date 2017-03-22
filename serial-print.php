@@ -78,7 +78,7 @@ while ($row = @mysqli_fetch_array($result1)) {
 ?>
   <table width="100%" border="0" cellspacing="3" cellpadding="2">
     <tr>
-      <td align="left" valign="top" nowrap="nowrap"><p><a href="/serial/"><img src="/images/logo_home.png" height="50" /></a></p>
+      <td align="left" valign="top" nowrap="nowrap"><p><a href="/"><img src="/images/logo_home.png" height="50" /></a></p>
       <p>&nbsp;</p></td>
       <td align="left" valign="top">&nbsp;</td>
     </tr>
