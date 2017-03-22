@@ -71,8 +71,8 @@ if (($mode == "search") || ($mode == "searchS")) {
 
 if($mode == 'edit' || $mode == 'view') { 
 	$sql = "SELECT * FROM $table_name WHERE id='$entryID' ";
-	$rs = mysql_query($sql); 
-	$r = mysql_fetch_array($rs);
+	$rs = mysqli_query($dbcnx, $sql);
+	$r = mysqli_fetch_array($rs);
 	$serial_number = $r['serial_number'];
 	$serial_number_2 = $r['serial_number_2'];
 	$serial_number_3 = $r['serial_number_3'];
@@ -106,10 +106,10 @@ if(isset($_POST['submit']) || $mode == 'delete') {
 	if($mode == 'delete') {
 		$sql = "DELETE FROM  $table_name WHERE id='$entryID' ";
 		$mode = '';
-		 if (@mysql_query($sql)) { 
+		 if (@mysqli_query($dbcnx, $sql)) {
 			$prompt = '<h2 class="prompt">Entry was successfully deleted.</h2><br><meta http-equiv="refresh" content="3;URL=index.php">'; 
 		 } else { 
-			$prompt = '<p>Error deleting submitted entry: ' . mysql_error() . '</p>'; 
+			$prompt = '<p>Error deleting submitted entry: ' . mysqli_error($dbcnx) . '</p>';
 		 } 		
 	} elseif($mode == 'add') {
 		$mode = '';
@@ -143,11 +143,11 @@ if(isset($_POST['submit']) || $mode == 'delete') {
 		labor_claim_paid='".addslashes($_POST['labor_claim_paid'])."', 
 		parts_sent_out='".addslashes($_POST['parts_sent_out'])."'";
   
-		 if (@mysql_query($sql)) { 
-		 $entryID = mysql_insert_id();
+		 if (@mysqli_query($dbcnx, $sql)) {
+		 $entryID = mysqli_insert_id();
 			$prompt = '<h2 class="prompt">Your entry has been added.</h2><br><meta http-equiv="refresh" content="0;URL=index.php?mode=view&entryID='.$entryID.'">'; 
 		 } else { 
-			$prompt = '<p>Error adding submitted entry: ' . mysql_error() . '</p>'; 
+			$prompt = '<p>Error adding submitted entry: ' . mysqli_error($dbcnx) . '</p>';
 		 } 
 	} elseif ($mode == 'edit') {
 		$mode = '';
@@ -180,10 +180,10 @@ if(isset($_POST['submit']) || $mode == 'delete') {
 		labor_claim_paid='".addslashes($_POST['labor_claim_paid'])."', 
 		parts_sent_out='".addslashes($_POST['parts_sent_out'])."'
 		  WHERE id='$entryID' ";		
-		 if (@mysql_query($sql)) { 
+		 if (@mysqli_query($dbcnx, $sql)) {
 			$prompt = '<h2 class="prompt">Your entry has been updated.</h2><br><meta http-equiv="refresh" content="3;URL=index.php">'; 
 		 } else { 
-			$prompt = '<p>Error editing entry: ' . mysql_error() . '</p>'; 
+			$prompt = '<p>Error editing entry: ' . mysqli_error($dbcnx) . '</p>';
 		 } 
 
 	} 
@@ -502,8 +502,8 @@ foreach ($dealer_array as $val => $display){
         <td><select name="warranty_status">
             <?php
 $query1 = "select warranty_status from $table_name WHERE id = $entryID";
-$result1=@mysql_query($query1);
-while ($row = @mysql_fetch_array($result1)) {
+$result1=@mysqli_query($dbcnx, $query1);
+while ($row = @mysqli_fetch_array($result1)) {
 $model = "{$row['warranty_status']}";
 echo "<option selected value=\"$warranty_status\" >$warranty_status</option>\n";
 	}
@@ -539,8 +539,8 @@ if ($model == "None") {
         <td><select name="spiff_paid">
             <?
 $query1 = "select spiff_paid from $table_name WHERE id = $entryID";
-$result1=@mysql_query($query1);
-while ($row = @mysql_fetch_array($result1)) {
+$result1=@mysqli_query($dbcnx, $query1);
+while ($row = @mysqli_fetch_array($result1)) {
 $model = "{$row['spiff_paid']}";
 echo "<option selected value=\"$spiff_paid\" >$spiff_paid</option>\n";
 	}
@@ -597,12 +597,12 @@ if ($model == "Yes") {
         <td><select name="salesperson_id">
             <?
 				$query2 = "SELECT * FROM 3G_serial_numbers_salesPersons ORDER BY fname ASC";
-				$results2 = mysql_query($query2);				
+				$results2 = mysqli_query($dbcnx, $query2);
 				
 				if ($_POST['salesperson_id'] == "") {
 						echo '<option>Select One</option> ';
 				   }
-				while($row2 = mysql_fetch_array($results2)) {
+				while($row2 = mysqli_fetch_array($results2)) {
 					$salesID = $row2['salesperson_id'];
 					$fname = $row2['fname'];
 					$lname = $row2['lname'];
@@ -736,8 +736,8 @@ if ($model == "Yes") {
       <td align="left" valign="top" nowrap="nowrap"><strong>Spiff Salesperson:</strong></td>
       <td align="left" valign="top"><?php
 				$query2 = "SELECT * FROM 3G_serial_numbers_salesPersons WHERE salesperson_id='$salesperson_id' ";
-				$results2 = mysql_query($query2);				
-				while($row2 = mysql_fetch_array($results2)) {
+				$results2 = mysqli_query($dbcnx, $query2);
+				while($row2 = mysqli_fetch_array($results2)) {
 					$salesID = $row2['salesperson_id'];
 					$fname = $row2['fname'];
 					$lname = $row2['lname'];
@@ -834,11 +834,11 @@ if ($_REQUEST['q'] == "approved") {
 	}
 }
 	
-	$total_pages = mysql_fetch_array(mysql_query($query));
+	$total_pages = mysqli_fetch_array(mysqli_query($dbcnx, $query));
 	$total_pages = $total_pages[num];
 	
 	$stages = 3;
-	$page = mysql_escape_string($_GET['page']);
+	$page = mysqli_escape_string($dbcnx, $_GET['page']);
 	if($page){
 		$start = ($page - 1) * $limit; 
 	}else{
@@ -889,7 +889,7 @@ if ($_REQUEST['q'] == "approved") {
 	}
 	
 }
-	$resulter = mysql_query($query);
+	$resulter = mysqli_query($dbcnx, $query);
 	
 	// Initial page num setup
 	if ($page == 0){$page = 1;}
@@ -1027,7 +1027,7 @@ if ($sortOrder == "ASC") {
 //	echo "<td class='visitorsTableHdr' style='background-color:#dd0000;'>Delete?</td>\n"; 
 	echo "</tr>\n";
 
-	while($row = mysql_fetch_array($resulter)){ 
+	while($row = mysqli_fetch_array($resulter)){
 	 	
 	$row_color = ($row_count % 2) ? $color1 : $color2;
     $id = "{$row['id']}";
@@ -1097,8 +1097,8 @@ if ($sortOrder == "ASC") {
 	$salesperson_id = "{$row['salesperson_id']}";
 	
 	$query2 = "SELECT * FROM 3G_serial_numbers_salesPersons WHERE salesperson_id='$salesperson_id' ";
-	$results2 = mysql_query($query2);	
-	$row2 = mysql_fetch_array($results2);
+	$results2 = mysqli_query($dbcnx, $query2);
+	$row2 = mysqli_fetch_array($results2);
 	$salesID = $row2['salesperson_id'];
 	$salesfname = $row2['fname'];
 	$saleslname = $row2['lname'];
