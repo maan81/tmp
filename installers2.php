@@ -10,7 +10,7 @@ $table_name = "3G_serial_numbers_installers";
 if ($mode == "search") {
 	$q = $_REQUEST['q'];
 	$isSearch = "&mode=search&q=".$q;
-	$showAll = '<a href="/serial/installers.php" class="addButton">Show All</a>';
+	$showAll = '<a href="/installers.php" class="addButton">Show All</a>';
 }
 
 
@@ -127,7 +127,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 ?>
 <?php if($mode == 'add' || $mode == 'edit') :?>
 <?php unset($_SESSION['prompt']); ?>
-<div class="viewEditBox"> <a href="/serial/installers.php" class="addButton">Close</a><br>
+<div class="viewEditBox"> <a href="/installers.php" class="addButton">Close</a><br>
   <br>
   <form action="<?= $_SERVER['PHP_SELF']?>?mode=<?=$mode?>&entryID=<?=$entryID?>" method="post">
     <table cellpadding="3" cellspacing="3" border="0" width="100%">
@@ -335,7 +335,7 @@ while ($row = @mysqli_fetch_array($result1)) {
 ?>
   <table width="100%" border="0" cellspacing="3" cellpadding="2">
     <tr>
-      <td valign="middle" align="left"><a href="/serial/installers.php" class="addButton">Close</a></td>
+      <td valign="middle" align="left"><a href="/installers.php" class="addButton">Close</a></td>
       <td valign="middle" align="right"><a href="installers.php?mode=edit&entryID=<?php echo $entryID; ?>" class="addButton">Edit</a></td>
     </tr>
     <tr>
