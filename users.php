@@ -112,7 +112,7 @@ jQuery(function($){
 <br>
 <?php if(isset($prompt)) print $prompt?>
 <?php if($mode == 'add' || $mode == 'edit') :?>
-<div class="viewEditBox"> <a href="/serial/users.php" class="addButton">Cancel</a><br>
+<div class="viewEditBox"> <a href="/users.php" class="addButton">Cancel</a><br>
   <br>
   <form action="<?= $_SERVER['PHP_SELF']?>?mode=<?=$mode?>&entryID=<?=$entryID?>" method="post">
     <table cellpadding="3" cellspacing="3" border="0" width="100%">
@@ -314,7 +314,7 @@ while ($row = @mysqli_fetch_array($result1)) {
 ?>
   <table width="100%" border="0" cellspacing="3" cellpadding="2">
     <tr>
-      <td valign="middle" align="left"><a href="/serial/users.php" class="addButton">Close</a></td>
+      <td valign="middle" align="left"><a href="/users.php" class="addButton">Close</a></td>
       <td valign="middle" align="right"><a href="users.php?mode=edit&entryID=<?php echo $entryID; ?>" class="addButton">Edit</a></td>
     </tr>
     <tr>
