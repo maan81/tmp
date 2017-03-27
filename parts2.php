@@ -247,7 +247,7 @@ foreach ($part_set_array as $val => $display){
         <td>:</td>
         <td><select name="actual_qty">
         <option value="">Choose One</option>
-            <?
+            <?php
 				$query2 = "SELECT * FROM dealers3G ORDER BY name ASC";
 				$results2 = mysqli_query($dbcnx, $query2);				
 				while($row2 = mysqli_fetch_array($results2)) {

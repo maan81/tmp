@@ -537,7 +537,7 @@ if ($model == "None") {
         <td nowrap> Spiff Paid?</td>
         <td>:</td>
         <td><select name="spiff_paid">
-            <?
+            <?php
 $query1 = "select spiff_paid from $table_name WHERE id = $entryID";
 $result1=@mysqli_query($dbcnx, $query1);
 while ($row = @mysqli_fetch_array($result1)) {
@@ -595,7 +595,7 @@ if ($model == "Yes") {
         <td nowrap>Spiff Salesperson</td>
         <td>:</td>
         <td><select name="salesperson_id">
-            <?
+            <?php
 				$query2 = "SELECT * FROM 3G_serial_numbers_salesPersons ORDER BY fname ASC";
 				$results2 = mysqli_query($dbcnx, $query2);
 				
